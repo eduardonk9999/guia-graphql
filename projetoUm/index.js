@@ -3,10 +3,10 @@ const { gql, ApolloServer } = require("apollo-server")
 const typeDefs = gql`
   type Query {
     idade: Int
-    salario: Float
     nome: String
     ativo: Boolean
     id: ID
+    tecnologias: [String]
   }
 `
 const resolvers = {
@@ -14,8 +14,11 @@ const resolvers = {
     idade() {
       return 30;
     },
-    salario() {
-      return 10000
+    nome() {
+      return "Eduardo"
+    },
+    tecnologias() {
+      return ['GraphQL', 'ReactJS', 'CSS'];
     }
   }
 }
