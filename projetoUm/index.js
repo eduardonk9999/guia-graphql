@@ -1,24 +1,25 @@
 const { gql, ApolloServer } = require("apollo-server")
 
 const typeDefs = gql`
-  type Query {
+  type Usuario {
     idade: Int
     nome: String
     ativo: Boolean
     id: ID
-    tecnologias: [String]
+  }
+  type Query {
+    usuario: Usuario
   }
 `
 const resolvers = {
   Query: {
-    idade() {
-      return 30;
-    },
-    nome() {
-      return "Eduardo"
-    },
-    tecnologias() {
-      return ['GraphQL', 'ReactJS', 'CSS'];
+    usuario() {
+      return {
+        id: 1,
+        nome: 'Edu',
+        ativo: true,
+        idade: 30
+      }
     }
   }
 }
