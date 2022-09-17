@@ -1,67 +1,42 @@
-const { gql, ApolloServer } = require("apollo-server")
+const { gql, ApolloServer  } = require("apollo-server");
 
-
-const produtos = [
+const db = [
   {
     id: 1,
-    nome: 'Notebook',
-    valor: 12000.32
+    nome: "Pedro",
+    email:"pedro@email.com",
+    telefone_fixo: "11 1234 1234"
   },
   {
     id: 2,
-    nome: 'Smarthphone',
-    valor: 6000.32
+    nome: "João",
+    email:"joão@email.com",
+    telefone: "34 1234 1234"
   }
 ]
-
-const usuarios = [
-  {
-    id: 1,
-    nome: 'Eduardo',
-    ativo: true,
-    idade: 30
-  },
-  {
-    id: 2,
-    nome: 'Maria',
-    ativo: true,
-    idade: 28
-  }
-]
-
 
 const typeDefs = gql`
-  type Produto {
-    id: ID
+  type Usuario {
+    id: Int
     nome: String
-    valor: Float
+    email: String
+    telefone: String
   }
 
-  type Usuario {
-    idade: Int
-    nome: String
-    ativo: Boolean
-    id: ID
-  }
-  
   type Query {
-    usuarios: [Usuario]
-    produtos: [Produto]
-    usuario(id: Int, nome: String): Usuario
+    usuario: Usuario
   }
-`
+`;
+
 const resolvers = {
+  Usuario: {
+    telefone() {
+      return "123"
+    }
+  },
   Query: {
-    usuarios() {
-      return usuarios
-    },
-    produtos() {
-      return produtos
-    },
-    usuario(_, args) {
-      const { id, nome } = args;
-      if(id) return usuarios.find(usuario => usuario.id === id);
-      return usuarios.find(usuario => usuario.nome === nome)
+    usuario() {
+      return db[0]
     }
   }
 }
