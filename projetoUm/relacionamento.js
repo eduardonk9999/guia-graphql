@@ -49,6 +49,7 @@ const resolvers = {
     }
   },
   Query: {
+    // o primeiro argumento é undefined, por isso, passamos o args como segundo argumento.
     usuario(_, args) {
       return db.find(db => db.id === args.id)
     },
