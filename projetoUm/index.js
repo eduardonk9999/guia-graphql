@@ -1,10 +1,10 @@
 const { gql, ApolloServer  } = require("apollo-server");
 /**
- * Aliases => Ajuda a fazer mais de uma consulta, dando apelidos para uma query
- * Fragmensts => Unidades reutilizaveis, construi conjuntos de campos, 
- * e incluir nas pesquisas
- * 
- */
+ * Operations Name => Quando damos nomes para nossas
+ * operações, vai nos ajudar a fazer depuração no nosso back-end
+ * Enums => tipo especial para escalar, restrinto ou um conjunto especifico
+ * de valores permetidos.
+ *  */
 
 
 
@@ -34,6 +34,12 @@ const db = {
 
 
 const typeDefs = gql`
+  enum TipoPerfil {
+    ADMIN
+    NORMAL
+  }
+
+
   type Usuario {
     id: Int
     nome: String
@@ -44,7 +50,7 @@ const typeDefs = gql`
 
   type Perfil {
     id: Int
-    descricao: String
+    descricao: TipoPerfil
   }
 
   type Query {
